@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { bulkShortenUrls } from "../api";
+import { SHORTLINK_BASE_URL } from "../config";
 import styles from "./BulkShorten.module.css";
 
 export default function BulkShorten({ onCreated }) {
@@ -8,7 +9,7 @@ export default function BulkShorten({ onCreated }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const BASE = window.location.origin.replace("3000", "5001");
+  const BASE = SHORTLINK_BASE_URL;
 
   async function handleSubmit(e) {
     e.preventDefault();

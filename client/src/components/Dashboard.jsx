@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { deleteUrl } from "../api";
+import { SHORTLINK_BASE_URL } from "../config";
 import StatsModal from "./StatsModal";
 import styles from "./Dashboard.module.css";
 
@@ -7,7 +8,7 @@ export default function Dashboard({ urls, onRefresh }) {
   const [selectedId, setSelectedId] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
 
-  const BASE = window.location.origin.replace("3000", "5001");
+  const BASE = SHORTLINK_BASE_URL;
 
   async function handleDelete(id) {
     setDeletingId(id);

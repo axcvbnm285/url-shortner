@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { fetchStats } from "../api";
+import { SHORTLINK_BASE_URL } from "../config";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
   PieChart, Pie, Cell, Legend,
@@ -14,7 +15,7 @@ export default function StatsModal({ urlId, onClose }) {
   const [loading, setLoading] = useState(true);
   const qrRef = useRef(null);
 
-  const shortLink = data ? `${window.location.origin.replace("3000", "5001")}/${data.shortCode}` : "";
+  const shortLink = data ? `${SHORTLINK_BASE_URL}/${data.shortCode}` : "";
 
   useEffect(() => {
     fetchStats(urlId).then((r) => setData(r.data)).finally(() => setLoading(false));

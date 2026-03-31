@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { shortenUrl } from "../api";
+import { SHORTLINK_BASE_URL } from "../config";
 import styles from "./ShortenForm.module.css";
 
 export default function ShortenForm({ onCreated }) {
@@ -14,7 +15,7 @@ export default function ShortenForm({ onCreated }) {
   const [result, setResult] = useState(null);
   const [copied, setCopied] = useState(false);
 
-  const shortLink = result ? `${window.location.origin.replace("3000", "5001")}/${result.shortCode}` : "";
+  const shortLink = result ? `${SHORTLINK_BASE_URL}/${result.shortCode}` : "";
 
   async function handleSubmit(e) {
     e.preventDefault();
