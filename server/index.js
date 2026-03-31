@@ -8,7 +8,10 @@ const { detectDevice } = require("./routes/url");
 const authRoutes = require("./routes/auth");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  credentials: true,
+}));
 app.use(express.json());
 
 mongoose
@@ -30,7 +33,7 @@ app.get("/:code", async (req, res) => {
 
     // Password-protected — redirect to unlock page on frontend
     if (url.password) {
-      return res.redirect(`http://localhost:3000/unlock/${url._id}`);
+      return res.redirect(`${process.env.FRONTEND_URL}/unlock/${url._id}`);
     }
 
     const device = detectDevice(req.headers["user-agent"]);
